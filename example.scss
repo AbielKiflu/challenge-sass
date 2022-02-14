@@ -1,6 +1,20 @@
 
 @import "_variable";
 
+
+@mixin shadow{
+    -webkit-box-shadow: 10px 10px 15px -4px $gray;
+    -moz-box-shadow: 10px 10px 15px -4px $gray;
+    box-shadow: 10px 10px 15px -4px $gray;
+}
+
+%message-shared{
+    border: 1px solid $light_gray;
+    padding: $padding;
+    color: $white;
+}
+ 
+
 body {
     font: 100% "Space Mono", monospace;
     color: $gray;
@@ -11,7 +25,7 @@ body {
 }
 
 main {
-    padding: 0 1em;
+    padding: 0 $padding;
 }
 
 article {
@@ -24,10 +38,8 @@ article {
         flex-grow: 1;
         flex-basis: 45%;
         border: 1px $light_gray solid;
-        -webkit-box-shadow: 10px 10px 15px -4px $gray;
-        -moz-box-shadow: 10px 10px 15px -4px $gray;
-        box-shadow: 10px 10px 15px -4px $gray;
-        padding: 16px;
+        @include shadow();
+        padding: $padding;
         margin: 16px;
         clear: both;
         overflow: auto;
@@ -50,7 +62,7 @@ article {
         margin-bottom: 1.6em;
         max-width: 100%;
         overflow: auto;
-        padding: 1em 1.5em;
+        padding: 1em $padding+8;
         display: block;
         word-wrap: break-word;
     }
@@ -82,7 +94,7 @@ h1 {
 h3 {
     text-align: center;
     font-size: 1.5em;
-    padding: 32px;
+    padding: $padding*2;
     margin-bottom: 0px;
 }
 
@@ -90,19 +102,15 @@ h3 {
     padding: 16px;
 }
 
-.success,
-.error,
-.warning {
-    border: 1px solid $light_gray;
-    padding: 16px;
-    color: $white;
-}
+ 
 
 .success {
+    @extend %message-shared;
     background-color:$green;
 }
 
 .error {
+    @extend %message-shared;
     background-color:$red;
     &:hover {
         background-color:$green;
@@ -110,6 +118,7 @@ h3 {
 }
 
 .warning {
+    @extend %message-shared;
     background-color: $orange;
 }
  
